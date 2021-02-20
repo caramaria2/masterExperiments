@@ -1,0 +1,16 @@
+Preporcessing, SWR, Lemmatization
+Feature Extraction, none
+Features, none
+Sentiment, no
+Naive Bayes, acc, recall, precision, f1, crossVAcc,crossRecall, crossPrecision, crossVf1
+['NA', 0.8444444444444446, '0.84 (+/- 0.05)', '']
+['BUG', 0.6927083333333335, '0.79 (+/- 0.04)', '']
+['FUNC', 0.38974358974358975, '0.65 (+/- 0.06)', '']
+['NON_FUNC', 0.23008849557522124, '0.59 (+/- 0.11)', '']
+['FR', 0.6053412462908012, '0.71 (+/- 0.07)', '']
+Support Vector Machine, acc, recall, precision, f1, crossVAcc,crossRecall, crossPrecision, crossVf1
+['NA', 0.8153618906942393, '0.81 (+/- 0.05)', '']
+['BUG', 0.6062717770034843, '0.72 (+/- 0.06)', '']
+['FUNC', 0.15873015873015872, '0.55 (+/- 0.07)', '']
+['NON_FUNC', 0.0, '0.48 (+/- 0.04)', '']
+['FR', 0.4885496183206107, '0.66 (+/- 0.06)', '']

@@ -1,0 +1,10 @@
+Preporcessing, SWR, Stemming
+Feature Extraction, none
+Metadata, none
+Sentiment, no
+RandomForestClassifier Tree, acc, recall, precision, f1
+['NA', 0.8256333830104322, '0.83 (+/- 0.03)', '']
+['BUG', 0.6566265060240963, '0.78 (+/- 0.05)', '']
+['FUNC', 0.2074074074074074, '0.55 (+/- 0.06)', '']
+['NON_FUNC', 0.175, '0.57 (+/- 0.06)', '']
+['FR', 0.5338078291814947, '0.69 (+/- 0.07)', '']

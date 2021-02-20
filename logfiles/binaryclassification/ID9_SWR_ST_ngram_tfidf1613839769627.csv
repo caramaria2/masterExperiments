@@ -1,0 +1,10 @@
+logfile,1613839769627
+Preporcessing, SWR, stemming
+Feature Extraction, N-Gram(2,3), TFIDF
+Sentiment, mo
+Feature Extraction: TFIDF Vector Array
+GBRegession Tree, acc, recall, precision, f1
+['NA', 0.826783114992722, '0.81 (+/- 0.04)', '']
+['BUG', 0.610738255033557, '0.72 (+/- 0.07)', '']
+['FUNC', 0.33749999999999997, '0.64 (+/- 0.06)', '']
+['NON_FUNC', 0.24719101123595505, '0.60 (+/- 0.07)', '']
