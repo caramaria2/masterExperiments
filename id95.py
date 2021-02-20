@@ -64,6 +64,19 @@ def buildModel(vocab_length, embedding_matrix, max_length):
     model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['acc', f1_m, precision_m, recall_m])
     return model
 
+def executeANNClassificationForClass(className):
+    writeLog(className)
+    sentiments = data[[className]]
+    X_train, X_test, y_train, y_test = train_test_split(padded_docs, sentiments, test_size=0.2, random_state=42)
+    X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.1, random_state=42)
+
+    model = buildModel(vocab_length, embedding_matrix, max_length)
+    history = model.fit(X_train, y_train, validation_data=(X_val, y_val), epochs=50, verbose=1)
+    loss, accuracy, f1_score, precision, recall = model.evaluate(X_test, y_test, verbose=0, callbacks=[csv_logger])
+    writeLog("f1: " + str(f1_score))
+    print(f1_score)
+
+
 
 # Logfile
 #Create Log File
@@ -112,64 +125,10 @@ for word, index in word_tokenizer.word_index.items():
 
 
 # Deep Learning Classifier
-writeLog("OWN 300")
-writeLog("NA")
-sentiments = data [['NA']]
-X_train, X_test, y_train, y_test = train_test_split(padded_docs, sentiments, test_size=0.2, random_state=42)
-X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.1, random_state=42)
-
-model = buildModel(vocab_length, embedding_matrix, max_length)
-history = model.fit(X_train, y_train, validation_data=(X_val, y_val), epochs=50, verbose=1)
-loss, accuracy, f1_score, precision, recall = model.evaluate(X_test, y_test, verbose=0 ,callbacks=[csv_logger])
-print(f1_score)
-
-writeLog("acc: "+str(accuracy))
-writeLog("precision: "+str(precision))
-writeLog("recall: "+str(recall))
-writeLog("f1: "+str(f1_score))
+executeANNClassificationForClass("NA")
+executeANNClassificationForClass("BUG")
+executeANNClassificationForClass("FUNC")
+executeANNClassificationForClass("NON_FUNC")
 
 
-writeLog("BUG")
-sentiments = data [['BUG']]
-X_train, X_test, y_train, y_test = train_test_split(padded_docs, sentiments, test_size=0.2, random_state=42)
-X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.1, random_state=42)
 
-model = buildModel(vocab_length, embedding_matrix, max_length)
-history = model.fit(X_train, y_train, validation_data=(X_val, y_val), epochs=50, verbose=1)
-loss, accuracy, f1_score, precision, recall = model.evaluate(X_test, y_test, verbose=0 ,callbacks=[csv_logger])
-print(f1_score)
-
-writeLog("acc: "+str(accuracy))
-writeLog("precision: "+str(precision))
-writeLog("recall: "+str(recall))
-writeLog("f1: "+str(f1_score))
-
-writeLog("FUNC")
-sentiments = data [['FUNC']]
-X_train, X_test, y_train, y_test = train_test_split(padded_docs, sentiments, test_size=0.2, random_state=42)
-X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.1, random_state=42)
-
-model = buildModel(vocab_length, embedding_matrix, max_length)
-history = model.fit(X_train, y_train, validation_data=(X_val, y_val), epochs=50, verbose=1)
-loss, accuracy, f1_score, precision, recall = model.evaluate(X_test, y_test, verbose=0 ,callbacks=[csv_logger])
-print(f1_score)
-
-writeLog("acc: "+str(accuracy))
-writeLog("precision: "+str(precision))
-writeLog("recall: "+str(recall))
-writeLog("f1: "+str(f1_score))
-
-writeLog("NON_FUNC")
-sentiments = data [['NON_FUNC']]
-X_train, X_test, y_train, y_test = train_test_split(padded_docs, sentiments, test_size=0.2, random_state=42)
-X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.1, random_state=42)
-
-model = buildModel(vocab_length, embedding_matrix, max_length)
-history = model.fit(X_train, y_train, validation_data=(X_val, y_val), epochs=50, verbose=1)
-loss, accuracy, f1_score, precision, recall = model.evaluate(X_test, y_test, verbose=0 ,callbacks=[csv_logger])
-print(f1_score)
-
-writeLog("acc: "+str(accuracy))
-writeLog("precision: "+str(precision))
-writeLog("recall: "+str(recall))
-writeLog("f1: "+str(f1_score))
