@@ -1,8 +1,4 @@
-Preporcessing, SWR, Stemming
-Feature Extraction, none
-Metadata, none
-Sentiment, no
-RandomForestClassifier Tree, acc, recall, precision, f1
+F1, F1_CV
 ['NA', 0.8034398034398034, '0.70 (+/- 0.06)', '']
 ['BUG', 0.29824561403508776, '0.55 (+/- 0.07)', '']
 ['FUNC', 0.11382113821138212, '0.47 (+/- 0.03)', '']

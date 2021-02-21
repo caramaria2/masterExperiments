@@ -1,8 +1,4 @@
-Configurations:
-Preprocessing: SWR, Lem
-Feature Extraction: BOW, NGRAM, META
-Category, Accuacy, Recall, Precision, F1
-Binary Class
+F1, F1_CV
 NB
 ['NA', 0.8604316546762589, '0.84 (+/- 0.06)', '']
 ['BUG', 0.7098445595854922, '0.80 (+/- 0.05)', '']

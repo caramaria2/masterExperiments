@@ -68,7 +68,7 @@ def buildModel(vocab_length, embedding_matrix, max_length):
     model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['acc', f1_m])
     return model
 
-def executeANNClassificationForClass(className):
+def executeANNClassificationForClassCross(className):
     sentiments = data[className]
     n_folds = 10
     cv_scores, model_history = list(), list()
@@ -82,13 +82,23 @@ def executeANNClassificationForClass(className):
 
     writeLog(cv_scores)
 
+def executeANNClassificationForClass(className):
+    sentiments = data[className]
+    X_train, X_test, y_train, y_test = train_test_split(padded_docs, sentiments, test_size=0.2, random_state=42)
+    X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.1, random_state=42)
+
+    model = buildModel(vocab_length, embedding_matrix, max_length)
+    history = model.fit(X_train, y_train, validation_data=(X_val, y_val), epochs=50, verbose=1)
+    loss, accuracy, f1_score = model.evaluate(X_test, y_test, verbose=0, callbacks=[csv_logger])
+    writeLog("f1: " + str(f1_score))
+    print(f1_score)
 
 
 # Logfile
 #Create Log File
 path = "./logfiles/"
 timestamp = int(round(time.time() * 1000))
-filename = path+str(timestamp)+'.csv';
+filename = path+'CNN_FR_Glove'+str(timestamp)+'.csv';
 csv_logger = CSVLogger(filename, append=True, separator=',')
 
 data = pd.read_csv("./SentimentData.csv", index_col=0)
@@ -115,7 +125,7 @@ padded_docs = pad_sequences(encoded_docs, maxlen=max_length, padding='post')
 
 # Embedding
 embeddings_dictionary = dict()
-glove_file = open('./95_w2v_300.text', encoding="utf8")
+glove_file = open('./glove.6B.300d.txt', encoding="utf8")
 for line in glove_file:
     records = line.split()
     word = records[0]
@@ -133,9 +143,9 @@ for word, index in word_tokenizer.word_index.items():
 
 # Deep Learning Classifier
 # executeANNClassificationForClass("NA")
-# executeANNClassificationForClass("BUG")
+executeANNClassificationForClass("BUG")
 # executeANNClassificationForClass("FUNC")
-executeANNClassificationForClass("NON_FUNC")
-
+# executeANNClassificationForClass("NON_FUNC")
+executeANNClassificationForClass("FR")
 
 

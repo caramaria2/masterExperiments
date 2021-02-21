@@ -1,6 +1,4 @@
-Preporcessing, SWR, Snowball Stemmer
-Feature Extraction, TF (Count Vectorizer
-Sentiment, no
+F1, F1_CV
 Naive Bayes, acc, recall, precision, f1
 ['NA', 0.8456973293768547, '0.84 (+/- 0.06)', '']
 ['BUG', 0.6972010178117048, '0.79 (+/- 0.05)', '']
