@@ -98,7 +98,7 @@ def executeANNClassificationForClass(className):
 #Create Log File
 path = "./logfiles/"
 timestamp = int(round(time.time() * 1000))
-filename = path+'CNN_FR_Glove'+str(timestamp)+'.csv';
+filename = path+'CNN_FR_Google'+str(timestamp)+'.csv';
 csv_logger = CSVLogger(filename, append=True, separator=',')
 
 data = pd.read_csv("./SentimentData.csv", index_col=0)
@@ -125,7 +125,7 @@ padded_docs = pad_sequences(encoded_docs, maxlen=max_length, padding='post')
 
 # Embedding
 embeddings_dictionary = dict()
-glove_file = open('./glove.6B.300d.txt', encoding="utf8")
+glove_file = open('./GoogleNews-vectors-negative300.text', encoding="utf8")
 for line in glove_file:
     records = line.split()
     word = records[0]

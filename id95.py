@@ -68,7 +68,7 @@ def buildModel(vocab_length, embedding_matrix, max_length):
     model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['acc', f1_m])
     return model
 
-def executeANNClassificationForClass(className):
+def executeANNClassificationForClassCross(className):
     sentiments = data[className]
     n_folds = 10
     cv_scores, model_history = list(), list()
@@ -115,7 +115,7 @@ padded_docs = pad_sequences(encoded_docs, maxlen=max_length, padding='post')
 
 # Embedding
 embeddings_dictionary = dict()
-glove_file = open('./95_w2v_300.text', encoding="utf8")
+glove_file = open('./GoogleNews-vectors-negative300.text', encoding="utf8")
 for line in glove_file:
     records = line.split()
     word = records[0]
@@ -132,10 +132,10 @@ for word, index in word_tokenizer.word_index.items():
 
 
 # Deep Learning Classifier
-# executeANNClassificationForClass("NA")
-# executeANNClassificationForClass("BUG")
-# executeANNClassificationForClass("FUNC")
-executeANNClassificationForClass("NON_FUNC")
+executeANNClassificationForClassCross("NA")
+executeANNClassificationForClassCross("BUG")
+executeANNClassificationForClassCross("FUNC")
+executeANNClassificationForClassCross("NON_FUNC")
 
 
 
